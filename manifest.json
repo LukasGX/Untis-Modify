@@ -1,0 +1,16 @@
+{
+	"manifest_version": 3,
+	"name": "WebUntis Modify",
+	"version": "1.0.0",
+	"description": "Ändert webuntis.com Seiten",
+	"permissions": [],
+	"host_permissions": ["*://*.webuntis.com/*"],
+	"content_scripts": [
+		{
+			"matches": ["*://*.webuntis.com/*"],
+			"css": ["styles.css"],
+			"js": ["script.js"],
+			"run_at": "document_idle"
+		}
+	]
+}
