@@ -1,4 +1,5 @@
-console.log("Script loaded");
+const changeColors = true;
+const changeNames = true;
 
 const lessonColors = {
 	Eth: "#ffffff",
@@ -50,7 +51,6 @@ const config = { childList: true, subtree: true };
 const callback = (mutationsList, observer) => {
 	const lessonCards = document.querySelectorAll(".lesson-card");
 	if (lessonCards.length > 0) {
-		console.log(lessonCards);
 		lessonCards.forEach((card) => {
 			const subjectElement = card.querySelector(".lesson-card-subject");
 			const subject = subjectElement.textContent.trim();
@@ -59,8 +59,8 @@ const callback = (mutationsList, observer) => {
 			if (!subject || !colorbar) return;
 
 			// manipulate
-			if (lessonColors[subject]) colorbar.style.setProperty("--color", lessonColors[subject]);
-			if (lessonNames[subject]) subjectElement.textContent = lessonNames[subject];
+			if (lessonColors[subject] && changeColors) colorbar.style.setProperty("--color", lessonColors[subject]);
+			if (lessonNames[subject] && changeNames) subjectElement.textContent = lessonNames[subject];
 		});
 	}
 };
