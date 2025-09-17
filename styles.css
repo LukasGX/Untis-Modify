@@ -1,0 +1,10 @@
+.lesson-card.cancelled span {
+	text-decoration-thickness: 2px !important;
+}
+
+.lesson-card.cancelled .lesson-card-time,
+.lesson-card.cancelled .lesson-card-resources-with-change-container,
+.lesson-card.cancelled .lesson-card-student-group-container,
+.lesson-card.cancelled .lesson-card-subject-container {
+	text-decoration: line-through 2px !important;
+}
