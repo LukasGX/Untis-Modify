@@ -1,6 +1,3 @@
-const changeColors = true;
-const changeNames = true;
-
 const lessonColors = {
 	Eth: "#ffffff",
 	Ev: "#ffffff",
@@ -15,7 +12,7 @@ const lessonColors = {
 	L: "#ffff0f",
 	F: "#ffff0f",
 	D: "#ff0f0f",
-	Ph: "#000000",
+	Ph: "#0ff2e3",
 	G: "#ffaa00",
 	M: "#334eff",
 	WR: "#d1d1d1",
@@ -52,7 +49,24 @@ const cbn = () => {
 	callback(null, null);
 };
 
-const callback = (mutationsList, observer) => {
+const callback = async (mutationsList, observer) => {
+	let changeColors;
+	let changeNames;
+
+	const result = await chrome.storage.local.get(["changeColors", "changeNames"]);
+	if (result.changeColors) changeColors = result.changeColors;
+	else {
+		await chrome.storage.local.set({ changeColors: "true" });
+		changeColors = "true";
+	}
+	if (result.changeNames) changeNames = result.changeNames;
+	else {
+		await chrome.storage.local.set({ changeNames: "true" });
+		changeNames = "true";
+	}
+
+	console.log(`changeColors: ${changeColors}; changeNames: ${changeNames}`);
+
 	const lessonCards = document.querySelectorAll(".lesson-card");
 	lessonCards.forEach((card) => {
 		const subjectElement = card.querySelector(".lesson-card-subject");
@@ -64,8 +78,8 @@ const callback = (mutationsList, observer) => {
 		card.classList.remove("highlighted");
 
 		// manipulate
-		if (lessonColors[subject] && changeColors) colorbar.style.setProperty("--color", lessonColors[subject]);
-		if (lessonNames[subject] && changeNames) subjectElement.textContent = lessonNames[subject];
+		if (lessonColors[subject] && changeColors.toString() == "true") colorbar.style.setProperty("--color", lessonColors[subject]);
+		if (lessonNames[subject] && changeNames.toString() == "true") subjectElement.textContent = lessonNames[subject];
 	});
 
 	setTimeout(() => {
@@ -84,3 +98,9 @@ const callback = (mutationsList, observer) => {
 
 const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.action === "reloadWindow") {
+		window.location.reload();
+	}
+});
