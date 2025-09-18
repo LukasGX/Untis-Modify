@@ -4,6 +4,10 @@ body {
 	margin: 0;
 }
 
+body.adv {
+	width: 100%;
+}
+
 .header {
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -28,6 +32,16 @@ body {
 	margin-bottom: 0.5rem;
 }
 
+body.adv .h {
+	font-size: 1.9rem;
+	margin-bottom: 0.6rem;
+}
+
+body.adv .hh {
+	font-size: 1.4rem;
+	margin-bottom: 0.6rem;
+}
+
 button {
 	width: 100%;
 	padding: 0.5rem;
@@ -37,8 +51,12 @@ button {
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
-	margin-top: 0.8rem;
 	transition: 225ms ease;
+}
+
+button:first-of-type {
+	margin-top: 0.8rem;
+	margin-bottom: 0.4rem;
 }
 
 button:hover {
@@ -47,4 +65,21 @@ button:hover {
 
 .hm {
 	font-size: 0.6rem;
+}
+
+#colors {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.color-setting {
+	margin-bottom: 1rem;
+	background-color: rgba(0, 0, 0, 0.1);
+	padding: 0.6rem;
+}
+
+.color-setting span {
+	display: block;
+	font-weight: bold;
 }

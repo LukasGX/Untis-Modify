@@ -1,0 +1,21 @@
+{
+	"Eth": "Ethik",
+	"Ev": "Evangelisch",
+	"K": "Katholisch",
+	"C": "Chemie",
+	"E": "Englisch",
+	"Geo": "Geographie",
+	"Ku": "Kunst",
+	"Mu": "Musik",
+	"Sm": "Sport (m)",
+	"Sw": "Sport (w)",
+	"L": "Latein",
+	"F": "Französisch",
+	"D": "Deutsch",
+	"Ph": "Physik",
+	"G": "Geschichte",
+	"M": "Mathematik",
+	"WR": "Wirtschaft und Recht",
+	"WIn": "Wirtschaftsinformatik",
+	"B": "Biologie"
+}

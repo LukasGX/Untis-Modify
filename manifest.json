@@ -19,5 +19,11 @@
 			"js": ["script.js"],
 			"run_at": "document_idle"
 		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["config/lessonColors.json", "config/lessonNames.json"],
+			"matches": ["<all_urls>"]
+		}
 	]
 }
