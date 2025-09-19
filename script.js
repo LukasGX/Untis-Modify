@@ -40,7 +40,7 @@ function main(lessonColors, lessonNames) {
 		}
 
 		const lessonCards = document.querySelectorAll(".lesson-card");
-		lessonCards.forEach((card) => {
+		lessonCards.forEach(async (card) => {
 			const subjectElement = card.querySelector(".lesson-card-subject");
 			const subject = subjectElement.textContent.trim();
 			const colorbar = card.querySelector(".lesson-card-color-bar");
@@ -49,8 +49,16 @@ function main(lessonColors, lessonNames) {
 
 			card.classList.remove("highlighted");
 
+			// in local storage?
+			const colorResult = await chrome.storage.local.get([subject]);
+			let colorToSet;
+			if (colorResult[subject] !== undefined) colorToSet = colorResult[subject];
+			else colorToSet = lessonColors[subject];
+			// console.log(`${subject}: ${result[subject]}`);
+			// const colorToSet = lessonColors[subject];
+
 			// manipulate
-			if (lessonColors[subject] && changeColors.toString() == "true") colorbar.style.setProperty("--color", lessonColors[subject]);
+			if (lessonColors[subject] && changeColors.toString() == "true") colorbar.style.setProperty("--color", colorToSet);
 			if (lessonNames[subject] && changeNames.toString() == "true") subjectElement.textContent = lessonNames[subject];
 		});
 

@@ -40,6 +40,7 @@ body.adv .h {
 body.adv .hh {
 	font-size: 1.4rem;
 	margin-bottom: 0.6rem;
+	margin-top: 0.4rem;
 }
 
 button {
@@ -67,19 +68,43 @@ button:hover {
 	font-size: 0.6rem;
 }
 
-#colors {
+#colors,
+#names {
 	display: flex;
 	gap: 1rem;
 	flex-wrap: wrap;
 }
 
-.color-setting {
-	margin-bottom: 1rem;
+.setting {
 	background-color: rgba(0, 0, 0, 0.1);
-	padding: 0.6rem;
+	padding: 0.6rem 1rem;
+	border: none;
+	border-radius: 4px;
 }
 
-.color-setting span {
+.setting span:first-of-type {
 	display: block;
 	font-weight: bold;
+}
+
+.setting span:nth-of-type(2) {
+	font-size: 0.7rem;
+}
+
+.setting span.mb {
+	margin-bottom: 0.8rem;
+}
+
+.setting input[type="text"] {
+	font-size: 1rem;
+	padding: 0.2rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	outline: none;
+	transition: 225ms ease;
+}
+
+.setting input[type="text"]:hover,
+.setting input[type="text"]:focus {
+	border: 1px solid #000000;
 }
