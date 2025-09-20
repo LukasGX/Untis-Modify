@@ -1,0 +1,59 @@
+:root {
+	--primary-color: #f5a327;
+	--change-color: #a882b5;
+	--cancel-color: #b2b3b5;
+}
+
+.lesson-card {
+	background-color: var(--primary-color) !important;
+}
+
+.lesson-card.changed {
+	background-color: var(--change-color) !important;
+}
+
+.lesson-card.cancelled {
+	background: linear-gradient(to bottom left, var(--cancel-color) 48.5%, black 49%, black 51%, var(--cancel-color) 51.5%);
+	color: #000000 !important;
+}
+
+.icon-placement-container {
+	display: none !important;
+}
+
+.lesson-card-substitution-tag.show-tag {
+	background-color: transparent !important;
+	padding: 0 !important;
+	color: inherit !important;
+}
+
+.lesson-card .lesson-card-color-bar {
+	display: none;
+}
+
+.lesson-card .lesson-card-resources-with-change-container,
+.lesson-card-resources-with-change {
+	width: 100% !important;
+}
+
+.lesson-card-regular-tag,
+.lesson-card-regular-tag span,
+.lesson-card-subjects,
+.lesson-card-subjects span {
+	width: 100% !important;
+	display: block !important;
+	text-align: center !important;
+}
+
+.last-row .lesson-card-regular-tag,
+.last-row .lesson-card-regular-tag span {
+	display: inline !important;
+	width: auto !important;
+}
+
+.lesson-card-resources-with-change {
+	display: flex;
+	align-items: center !important;
+	justify-content: center;
+	gap: 0;
+}

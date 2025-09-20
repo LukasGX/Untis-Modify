@@ -60,6 +60,11 @@ function main(lessonColors, lessonNames) {
 			// manipulate
 			if (lessonColors[subject] && changeColors.toString() == "true") colorbar.style.setProperty("--color", colorToSet);
 			if (lessonNames[subject] && changeNames.toString() == "true") subjectElement.textContent = lessonNames[subject];
+
+			const bgColor = card.style.backgroundColor;
+			if (bgColor === "rgb(223, 246, 235)") {
+				card.classList.add("changed");
+			}
 		});
 
 		setTimeout(() => {
@@ -82,6 +87,16 @@ function main(lessonColors, lessonNames) {
 	chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		if (message.action === "reloadWindow") {
 			window.location.reload();
+		}
+	});
+
+	chrome.storage.local.get(["oldLayout"]).then((result) => {
+		if (result.oldLayout && result.oldLayout == "true") {
+			const link = document.createElement("link");
+			link.rel = "stylesheet";
+			link.type = "text/css";
+			link.href = chrome.runtime.getURL("old.css");
+			document.head.appendChild(link);
 		}
 	});
 }
