@@ -46,12 +46,17 @@ function main(lessonColors, lessonNames) {
 	const nKeys = Object.keys(lessonNames);
 	const nNames = Object.values(lessonNames);
 
-	nKeys.forEach((lesson, i) => {
+	nKeys.forEach(async (lesson, i) => {
+		const nameResult = await chrome.storage.local.get([`name-${lesson}`]);
+		let nameToSet;
+		if (nameResult[`name-${lesson}`] !== undefined) nameToSet = nameResult[`name-${lesson}`];
+		else nameToSet = nNames[i];
+
 		const setting = document.createElement("div");
 		setting.classList.add("setting");
 		setting.innerHTML = `
         <span class="mb">${lesson}</span>
-        <input type="text" data-lesson="${lesson}" value="${nNames[i]}" id="setting-name-${lesson}" />
+        <input type="text" data-lesson="${lesson}" value="${nameToSet}" id="setting-name-${lesson}" />
         `;
 		namesDiv.appendChild(setting);
 	});
@@ -122,5 +127,10 @@ function main(lessonColors, lessonNames) {
 
 	// save btn
 	const saveBtn = document.getElementById("save-btn");
-	saveBtn.onclick = () => {};
+	saveBtn.onclick = () => {
+		nKeys.forEach((lesson, id) => {
+			const value = document.getElementById(`setting-name-${lesson}`).value;
+			chrome.storage.local.set({ [`name-${lesson}`]: value });
+		});
+	};
 }

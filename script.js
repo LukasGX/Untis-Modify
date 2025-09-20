@@ -54,12 +54,15 @@ function main(lessonColors, lessonNames) {
 			let colorToSet;
 			if (colorResult[subject] !== undefined) colorToSet = colorResult[subject];
 			else colorToSet = lessonColors[subject];
-			// console.log(`${subject}: ${result[subject]}`);
-			// const colorToSet = lessonColors[subject];
+
+			const nameResult = await chrome.storage.local.get([`name-${subject}`]);
+			let nameToSet;
+			if (nameResult[`name-${subject}`] !== undefined) nameToSet = nameResult[`name-${subject}`];
+			else nameToSet = lessonNames[subject];
 
 			// manipulate
 			if (lessonColors[subject] && changeColors.toString() == "true") colorbar.style.setProperty("--color", colorToSet);
-			if (lessonNames[subject] && changeNames.toString() == "true") subjectElement.textContent = lessonNames[subject];
+			if (lessonNames[subject] && changeNames.toString() == "true") subjectElement.textContent = nameToSet;
 
 			const bgColor = card.style.backgroundColor;
 			if (bgColor === "rgb(223, 246, 235)") {
